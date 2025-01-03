@@ -99,7 +99,8 @@ class PetController {
 		if (StringUtils.hasText(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), false) != null) {
 			result.rejectValue("name", "duplicate", "already exists");
 		}
-		if (pet.getBirthDate().isAfter(LocalDate.now())){
+
+		if (pet.getBirthDate() != null && pet.getBirthDate().isAfter(LocalDate.now())) {
 			result.rejectValue("birthDate", "after current date", "birthDate is after current date");
 		}
 		if (result.hasErrors()) {
@@ -134,7 +135,7 @@ class PetController {
 				result.rejectValue("names", "duplicate", "already exists");
 			}
 		}
-		if (pet.getBirthDate().isAfter(LocalDate.now())){
+		if (pet.getBirthDate() != null && pet.getBirthDate().isAfter(LocalDate.now())) {
 			result.rejectValue("birthDate", "after current date", "birthDate is after current date");
 		}
 
